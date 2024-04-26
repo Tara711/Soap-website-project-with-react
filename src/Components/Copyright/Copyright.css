@@ -1,0 +1,20 @@
+.copyright-container {
+  color: black;
+  display: flex;
+  height: 50px;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 2px solid black;
+  background-color: green;
+}
+.copy-logo {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.copyright-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}

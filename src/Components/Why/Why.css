@@ -1,0 +1,14 @@
+.why {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.why-head {
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+}
+.why-para {
+  font-size: 20px;
+  text-align: center;
+}

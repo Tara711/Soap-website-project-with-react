@@ -1,0 +1,27 @@
+.nav {
+  background-color: #172d13;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  width: 100%;
+}
+.logo {
+  border-radius: 50%;
+  height: 85px;
+  cursor: pointer;
+}
+ul {
+  list-style: none;
+  display: flex;
+}
+ul > li {
+  flex-direction: column;
+  font-size: 20px;
+  margin: 0 30px;
+  cursor: pointer;
+}
+a {
+  text-decoration: none;
+  color: white;
+}

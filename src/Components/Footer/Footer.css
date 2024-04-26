@@ -1,0 +1,49 @@
+.footersection {
+  background-color: rgb(208, 204, 204);
+  padding: 30px 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: top;
+  width: 100%;
+}
+.company-links {
+  flex-direction: column;
+}
+.support-links {
+  flex-direction: column;
+}
+.footerstore {
+  flex-direction: column;
+}
+.footerimg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footerpicture {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 75px;
+  width: 150px;
+  color: black;
+}
+.app {
+  margin-right: 10px;
+  border-radius: 10px;
+
+  cursor: pointer;
+}
+.play {
+  margin-left: 10px;
+  border-radius: 10px;
+
+  cursor: pointer;
+}
+.footerlogo {
+  border-radius: 50%;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

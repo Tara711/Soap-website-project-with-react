@@ -1,0 +1,33 @@
+.Herosection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.herohead {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+.heropicture {
+  height: 100%;
+  width: 100%;
+  color: green;
+}
+.herocontent {
+  height: 100%;
+  width: 50%;
+  padding: 50px;
+}
+.herobutton {
+  height: 50px;
+  padding: 12px;
+  width: 180px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #d76f30;
+  color: white;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-block: 30px;
+}
