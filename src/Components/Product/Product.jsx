@@ -9,12 +9,15 @@ import item7 from "../../assets/soap-4307709_1280.jpg";
 import item8 from "../../assets/soap-5145054_1280.jpg";
 import item9 from "../../assets/soap-9238_1280.jpg";
 import { FaShoppingCart } from "react-icons/fa";
+import {addItem, setSection}  from '../../redux/componentSlice'
 import Cart from "../Cart/Cart";
+import { useDispatch } from "react-redux";
 
 const Product = () => {
   const [cart, setCart] = useState([]);
   const [flash, setFlash] = useState(false);
   const [showCart, setShowCart] = useState(false);
+  const dispatch = useDispatch();
 
   const addToCart = (product) => {
     const existingItem = cart.find((item) => item.product.id === product.id);
@@ -30,9 +33,14 @@ const Product = () => {
     } else {
       setCart([...cart, { product }]);
     }
-
+    dispatch(addItem(product))
     setFlash(true);
   };
+
+  const HandleClick = (productId) => 
+  {
+    dispatch(setSection(productId))
+  }
 
   const items = [
     {
@@ -145,37 +153,17 @@ const Product = () => {
                 </p>
                 <p className="text-gray-700 text-base">Price: €{item.price}</p>
                 <div className="">
-                  <FaShoppingCart
+                  <FaShoppingCart 
                     className="bg-blue-600 float-end hover:bg-blue-800 text-white p-4 rounded-full h-fit w-fit text-2xl cursor-pointer"
-                    onClick={() => addToCart(item)}
+                    onClick={() => {HandleClick(item.id); addToCart(item)}}
                   />
-                </div>
+                </div>   
               </div>
             </div>
           ))}
         </div>
       </div>
-      {showCart && (
-        <div className=" top-0 right-0 h-full w-1/4 bg-white shadow-lg">
-          <Cart cart={cart} flash={flash} addToCart={addToCart} />
-          <button
-            onClick={() => setShowCart(false)}
-            className="absolute top-0 right-0 mt-4 mr-4 bg-red-600 text-white px-2 py-1 rounded-full"
-          >
-            X
-          </button>
-        </div>
-      )}
-      {!showCart && (
-        <button
-          onClick={() => setShowCart(true)}
-          className=" bottom-4 right-4 bg-blue-600 text-white px-4 py-2 rounded-full"
-        >
-          <FaShoppingCart className="mr-2 top-0 right-0" />
-        </button>
-      )}
     </div>
   );
 };
-
 export default Product;
