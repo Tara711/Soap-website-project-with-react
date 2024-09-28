@@ -1,3 +1,98 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.grid-Container {
+    display: flex;
+  /* Height of the div */
+  }
+
+  .first-div {
+    width: 85%; /* Custom width for the first div */
+  }
+
+  .cart-hide-layout{
+    width:100%;
+  }
+
+  .cart-grid-layout {
+    width: 15%;  /* Small but visible width for the second div */
+    background-color: lightgray; /* Just for visibility */
+  }
+  
+
+
+  /* Add some styling for both divs */
+  .grid-container > div {
+    background-color: lightblue;
+    border: 1px solid #ccc;
+  }
+
+
+  .small-container {
+    transform: scale(0.1); /* Scale the entire component to 50% */
+    transform-origin: top left; /* Keep it positioned correctly */
+    width:10%; /* Adjust parent div to fit scaled content */
+  }
+
+   /*scrolling Container */
+  .app-container {
+    display: flex; /* Optional: if you want a flex layout */
+    justify-content:center; /* Center content horizontally */
+    height: 600px; /* Full height of the viewport */
+    padding: 16px; /* Optional padding */
+    box-sizing: border-box; /* Ensure padding is included in the height */
+  }
+  
+  .scrollable-container {
+    height: 800px; /* Set a fixed height */
+    overflow-y:auto;
+    overflow-x:hidden;
+    padding: 16px; /* Optional padding */
+    width: 90%; /* Make it responsive to parent width */
+    margin-left:15px;
+    max-width: 700px; /* Optional: max width for larger screens */
+  }
+
+  .custom-small-icon-class {
+    max-width: 150%;
+    height: 250px;
+  }
+  .custom-small-icon-image {
+    max-width: 30%;
+    height: 110px; /* Adjust image height based on the new container */
+    margin-left: 130px;
+  }
+
+  .cross-button {
+    width: 20px; /* Adjust size for the button */
+    height: 20px; /* Adjust size for the button */
+    border-radius: 50%; /* Make it circular */
+    background-color: black; /* Black background */
+    color: white; /* White text */
+    border: none; /* No border */
+    display: flex; /* Use flexbox for centering */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    font-size: 30px; /* Adjust size for the cross */
+    cursor: pointer; /* Pointer cursor on hover */
+    outline: none; /* Remove default outline */
+    padding: 0; /* Remove padding */
+    margin-left: 370px;
+  }
+  
+  .cross-button:hover {
+    background-color: #444; /* Slightly lighter on hover */
+  }
+
+  .text-sm-custom
+  {
+    width:50%;
+  }
+  .text-sm-custom-plus
+  {
+    width:50%;
+  }
+  
+  
+  
