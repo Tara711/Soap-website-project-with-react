@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
 import item1 from "../../assets/handmade-soap-4926844_1280.jpg";
 import item2 from "../../assets/handmade-soap-4926848_1280.jpg";
 import item3 from "../../assets/herbal.png";
@@ -11,13 +11,16 @@ import item9 from "../../assets/soap-9238_1280.jpg";
 import { FaShoppingCart } from "react-icons/fa";
 import {addItem, setSection}  from '../../redux/componentSlice'
 import Cart from "../Cart/Cart";
-import { useDispatch } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import TotalPriceCalculation from "../../PriceCalculation/PriceCalculation";
 
 const Product = () => {
   const [cart, setCart] = useState([]);
   const [flash, setFlash] = useState(false);
-  const [showCart, setShowCart] = useState(false);
   const dispatch = useDispatch();
+  var [showCartMenu, setShowCartMenu] = useState(false);
+  const cartItems = useSelector((state) => state.cart.items);
+
 
   const addToCart = (product) => {
     const existingItem = cart.find((item) => item.product.id === product.id);
@@ -126,43 +129,82 @@ const Product = () => {
     },
   ];
 
-  return (
-    <div>
-      <h1 className="text-3xl text-black text-center my-4">Our Products</h1>
-      <div className="flex flex-wrap justify-center my-8 ">
-        <div className="justify-around text-center grid grid-cols-3">
-          {items.map((item) => (
-            <div
-              className={`max-w-xs rounded overflow-hidden shadow-lg m-4 ${
-                flash ? "flash-animation" : ""
-              }`}
-              key={item.id}
-            >
-              <div className="relative h-64">
-                <img
-                  className="absolute h-full w-full object-cover"
-                  src={item.imageUrl}
-                  alt=""
-                />{" "}
-              </div>
-              <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2">{item.title}</div>
-                <p className="text-gray-700 text-base">{item.description}</p>
-                <p className="text-gray-700 text-base">
-                  Made in {item.country}
-                </p>
-                <p className="text-gray-700 text-base">Price: €{item.price}</p>
-                <div className="">
-                  <FaShoppingCart 
-                    className="bg-blue-600 float-end hover:bg-blue-800 text-white p-4 rounded-full h-fit w-fit text-2xl cursor-pointer"
-                    onClick={() => {HandleClick(item.id); addToCart(item)}}
-                  />
-                </div>   
-              </div>
-            </div>
-          ))}
+  useEffect(() => {
+    if (cartItems.length === 0) {
+      setShowCartMenu(false); // Close the cart if no items are in it
+    }
+  }, [cartItems]); 
+
+  const toggleCart =()=>
+  {
+    setShowCartMenu(showCartMenu = true);
+  }
+
+  const ItemContainer = (items) =>
+  {
+    return(
+          items.map((item) => (
+        <div
+          className={`max-w-xs rounded overflow-hidden shadow-lg m-4 ${
+            flash ? "flash-animation" : ""
+          }`}
+          key={item.id}
+        >
+          <div className="relative h-64">
+            <img
+              className="absolute h-full w-full object-cover"
+              src={item.imageUrl}
+              alt=""
+            />{" "}
+          </div>
+          <div className="px-6 py-4">
+            <div className="font-bold text-xl mb-2">{item.title}</div>
+            <p className="text-gray-700 text-base">{item.description}</p>
+            <p className="text-gray-700 text-base">
+              Made in {item.country}
+            </p>
+            <p className="text-gray-700 text-base">Price: €{item.price}</p>
+            <div className="">
+              <FaShoppingCart 
+                className="bg-blue-600 float-end hover:bg-blue-800 text-white p-4 rounded-full h-fit w-fit text-2xl cursor-pointer"
+                onClick={() => {HandleClick(item.id); addToCart(item); toggleCart()}}
+              />
+            </div>   
+          </div>
         </div>
-      </div>
+      ))
+    )
+  }
+
+
+  const CartRenderInsideBar =()=>
+  {
+    return(
+    showCartMenu && (
+      <div className="cart-grid-layout">
+        <div className="text-3xl text-black text-center my-4">
+          <div className="text-2xl text-black text-center my-4">
+            <div className="app-container scrollable-container ">
+            <Cart smallIcon={true} />
+            </div>
+            <TotalPriceCalculation/>
+          </div>
+        </div>
+      </div>)
+    )
+  }
+
+  return (
+    <div className="grid-Container">
+          <div className="first-div">
+            <h1 className="text-3xl text-black text-center my-4">Our Products</h1>
+            <div className="flex flex-wrap justify-center my-8 ">
+              <div className="justify-around text-center grid grid-cols-3">
+              {ItemContainer(items)}
+              </div>
+            </div >
+          </div>
+          {CartRenderInsideBar()}
     </div>
   );
 };
